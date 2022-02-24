@@ -1,1 +1,9 @@
  /* start CSS objects w the name CB_FunctionName */
+
+ .carousel-inner > .item > img,
+ .carousel-inner > .item > a > img {
+   margin: auto;
+   width: auto;
+   height: 600px;
+   max-height: 600px;
+ }
