@@ -1,1 +1,43 @@
  /* start CSS objects w the name CB_FunctionName */
+ .paymentCard {
+     background-color: transparent;
+     /* border-color: purple; */
+     border-width: 1px;
+     display: flex;
+     align-items: center;
+     width: 300px;
+ }
+
+ #mainContainer {
+     display: flex;
+     justify-content: center;
+ }
+
+ .demo {
+     /* background-color: aqua; */
+ }
+
+ .accordion-item {
+     width: 300px;
+ }
+
+ .accordion-item,
+ .accordion-header,
+ .accordion-button {
+     background-color: transparent;
+
+ }
+
+ .planText {
+     color: bisque;
+     padding: 5px;
+ }
+
+ .extraCard {
+     background: rgba(118, 217, 217, 0.25);
+     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+     backdrop-filter: blur(2.5px);
+     -webkit-backdrop-filter: blur(2.5px);
+     /* border-radius: 10px; */
+     border: 1px solid rgba(255, 255, 255, 0.18);
+ }

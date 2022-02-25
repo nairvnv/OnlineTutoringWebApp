@@ -7,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> -->
     <link rel="stylesheet" href="./Body/index.css">
+    <link rel="stylesheet" href="./index.css">
     <link rel="stylesheet" href="./HeaderFooter/index.css">
     <script src="./Body/index.js"></script>
     <script src="./HeaderFooter/index.js"></script>
@@ -20,18 +21,131 @@
 </head>
 
 <body>
-    <div>
-        <!-- Tirth - Header data -->
-    </div>
+    <div class="demo">
+        <div>
+            <!-- Tirth - Header data -->
+            test
+        </div>
 
-    <div>
-        <!-- Deep and Varun - Center Body data -->
+        <div>
+            <div id="mainContainer" class="main container">
+                <!-- Deep and Varun - Center Body data -->
+                <!-- <div class="row-md-3">
+                    test
+                </div> -->
+
+                <div class="row-md-6 gx-4 demo">
+                    <!-- Payment Plan -->
+                    <div class="justify-content-center card paymentCard shadow">
+                        <div class="text-white">
+                            <h3 class="display-5 planText">Our Plans!</h3>
+                        </div>
+                        <!-- Accordion item 1 -->
+                        <div class="accordion" id="accordionFlushExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                        Iron Plan
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <!-- <div class="accordion-body"> -->
+                                    <div class="card extraCard">
+                                        <div class="card-body">
+                                            <p class="card-text">
+                                                <div class="list-group">
+                                                    <label class="list-group-item">
+                                                        <input class="form-check-input me-1" type="checkbox" value="checked" checked>
+                                                        Unlimited Courses!
+                                                    </label>
+                                                    <label class="list-group-item">
+                                                        <input class="form-check-input me-1" type="checkbox" value="checked" checked>
+                                                        Pay Monthly as you go!
+                                                    </label>
+                                                </div>
+                                            </p>
+                                            <a href="#" class="btn btn-primary">Only for $ 6.99</a>
+                                        </div>
+                                    </div>
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                        Bronze Plan
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                    <!-- <div class="accordion-body"> -->
+                                    <div class="card extraCard">
+                                        <div class="card-body">
+                                            <p class="card-text">
+                                                <div class="list-group">
+                                                    <label class="list-group-item">
+                                                        <input class="form-check-input me-1" type="checkbox" value="checked" checked>
+                                                        Unlimited Courses!
+                                                    </label>
+                                                    <label class="list-group-item">
+                                                        <input class="form-check-input me-1" type="checkbox" value="checked" checked>
+                                                        Pay Quaterly as you go and save 10%!
+                                                    </label>
+                                                </div>
+                                            </p>
+                                            <a href="#" class="btn btn-primary">Only for $ 10.99</a>
+                                        </div>
+                                    </div>
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                        Platinum Plan
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                    <!-- <div class="accordion-body"> -->
+                                    <div class="card extraCard">
+                                        <div class="card-body">
+                                            <p class="card-text">
+                                                <div class="list-group">
+                                                    <label class="list-group-item">
+                                                        <input class="form-check-input me-1" type="checkbox" value="checked" checked>
+                                                        Unlimited Courses!
+                                                    </label>
+                                                    <label class="list-group-item">
+                                                        <input class="form-check-input me-1" type="checkbox" value="checked" checked>
+                                                        Pay Yearly and save a staggering 30% on fees!
+                                                    </label>
+                                                </div>
+                                            </p>
+                                            <a href="#" class="btn btn-primary">Only for $ 15.99</a>
+                                        </div>
+                                    </div>
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End -->
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- <div class="row-md-3">test</div> -->
+
+
+        </div>
     </div>
 
     <div>
         <!-- Tirth - Footer data -->
+        test
     </div>
 
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
 </html>
