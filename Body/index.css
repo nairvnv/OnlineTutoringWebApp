@@ -11,6 +11,8 @@
  #mainContainer {
      display: flex;
      justify-content: center;
+     flex-direction: row;
+     /* background-color: aqua; */
  }
 
  .demo {
@@ -42,10 +44,21 @@
      border: 1px solid rgba(255, 255, 255, 0.18);
  }
 
- .carousel-inner>.item>img,
+ .main_body {
+     display: flex;
+     width: 100%;
+ }
+
+ /* .carousel-inner>.item>img,
  .carousel-inner>.item>a>img {
      margin: auto;
      width: auto;
-     height: 600px;
+     height: 300px;
      max-height: 600px;
+ } */
+
+ .jumbotron {
+     display: flex;
+     align-items: center;
+     padding: 20px;
  }
