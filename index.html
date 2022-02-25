@@ -8,6 +8,9 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> -->
     <link rel="stylesheet" href="./Body/index.css">
@@ -15,7 +18,6 @@
     <link rel="stylesheet" href="./HeaderFooter/index.css">
     <script src="./Body/index.js"></script>
     <script src="./HeaderFooter/index.js"></script>
-
 
 
 </head>
@@ -27,122 +29,215 @@
             test
         </div>
 
-        <div>
-            <div id="mainContainer" class="main container">
-                <!-- Deep and Varun - Center Body data -->
-                <!-- <div class="row-md-3">
-                    test
-                </div> -->
+        <div id="main_body">
 
-                <div class="row-md-6 gx-4 demo">
-                    <!-- Payment Plan -->
-                    <div class="justify-content-center card paymentCard shadow">
-                        <div class="text-white">
-                            <h3 class="display-5 planText">Our Plans!</h3>
+
+            <div id="myCarousel" class="carousel slide">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="home_images/all.jpg" alt="all_lang" width="100" height="100">
+                        <div class="carousel-caption">
+                            <h3>Learn a new language today!</h3>
+                            <p>Choose from 1000's of well certified tutors</p>
                         </div>
-                        <!-- Accordion item 1 -->
-                        <div class="accordion" id="accordionFlushExample">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="flush-headingOne">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                        Iron Plan
-                                    </button>
-                                </h2>
-                                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                    <!-- <div class="accordion-body"> -->
-                                    <div class="card extraCard">
-                                        <div class="card-body">
-                                            <p class="card-text">
-                                                <div class="list-group">
-                                                    <label class="list-group-item">
-                                                        <input class="form-check-input me-1" type="checkbox" value="checked" checked>
-                                                        Unlimited Courses!
-                                                    </label>
-                                                    <label class="list-group-item">
-                                                        <input class="form-check-input me-1" type="checkbox" value="checked" checked>
-                                                        Pay Monthly as you go!
-                                                    </label>
-                                                </div>
-                                            </p>
-                                            <a href="#" class="btn btn-primary">Only for $ 6.99</a>
-                                        </div>
-                                    </div>
-                                    <!-- </div> -->
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="flush-headingTwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                                        Bronze Plan
-                                    </button>
-                                </h2>
-                                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                                    <!-- <div class="accordion-body"> -->
-                                    <div class="card extraCard">
-                                        <div class="card-body">
-                                            <p class="card-text">
-                                                <div class="list-group">
-                                                    <label class="list-group-item">
-                                                        <input class="form-check-input me-1" type="checkbox" value="checked" checked>
-                                                        Unlimited Courses!
-                                                    </label>
-                                                    <label class="list-group-item">
-                                                        <input class="form-check-input me-1" type="checkbox" value="checked" checked>
-                                                        Pay Quaterly as you go and save 10%!
-                                                    </label>
-                                                </div>
-                                            </p>
-                                            <a href="#" class="btn btn-primary">Only for $ 10.99</a>
-                                        </div>
-                                    </div>
-                                    <!-- </div> -->
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="flush-headingThree">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                                        Platinum Plan
-                                    </button>
-                                </h2>
-                                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                                    <!-- <div class="accordion-body"> -->
-                                    <div class="card extraCard">
-                                        <div class="card-body">
-                                            <p class="card-text">
-                                                <div class="list-group">
-                                                    <label class="list-group-item">
-                                                        <input class="form-check-input me-1" type="checkbox" value="checked" checked>
-                                                        Unlimited Courses!
-                                                    </label>
-                                                    <label class="list-group-item">
-                                                        <input class="form-check-input me-1" type="checkbox" value="checked" checked>
-                                                        Pay Yearly and save a staggering 30% on fees!
-                                                    </label>
-                                                </div>
-                                            </p>
-                                            <a href="#" class="btn btn-primary">Only for $ 15.99</a>
-                                        </div>
-                                    </div>
-                                    <!-- </div> -->
-                                </div>
-                            </div>
+                    </div>
+
+                    <div class="item">
+                        <img src="home_images/tutor_interact.jpeg" alt="Spanish" width="100" height="100">
+                        <div class="carousel-caption">
+                            <h3>Learn from an actual tutor online! Interact and learn faster today!</h3>
+
                         </div>
-                        <!-- End -->
+                    </div>
+
+                    <div class="item">
+                        <img src="home_images/japanese.jpg" alt="Japanese" width="100" height="100">
+                    </div>
+
+                    <div class="item">
+                        <img src="home_images/spanish.jpg" alt="Spanish" width="100" height="100">
                     </div>
 
                 </div>
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
 
-            <!-- <div class="row-md-3">test</div> -->
+            <div id="testimonials" class="jumbotron">
+                <div class="row g-2">
+                    <div class="col-md-4" style="background: rgb(131, 172, 219); ">
+                        <div class="card p-3 text-center px-4">
+                            <div class="user-image"> <img src="home_images/testimonial1.png" class="rounded-circle" width="100" height="100"> </div>
+                            <div class="user-content">
+                                <h5 class="mb-0">Sophia Tereshkova</h5> <span>Software Developer</span>
+                                <p>"Michael has taught my son since this summer. He is very experienced and
+                                    knowledgeable. He keeps his lesson effective, engaging and fun. My son is able to
+                                    stay focused and already speaks better Japanese than most of his peers."</p>
+                            </div>
+                            <div class="ratings"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="background: rgb(153, 224, 171);">
+                        <div class="card p-3 text-center px-4">
+                            <div class="user-image"> <img src="home_images/testimonial2.png" class="rounded-circle" width="100" height="100"> </div>
+                            <div class="user-content">
+                                <h5 class="mb-0">Dwayne Johnson</h5> <span>Actor</span>
+                                <p>"Jeremy is excellent. Everytime a new movie comes around and needs me to learn a new
+                                    language, Jeremy knows it all!! He is one of the most knowledgeable language tutors
+                                    I have ever experienced"</p>
+                            </div>
+                            <div class="ratings"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="background: rgb(230, 169, 134);">
+                        <div class="card p-3 text-center px-4">
+                            <div class="user-image"> <img src="home_images/testimonial1.png" class="rounded-circle" width="100" height="100"> </div>
+                            <div class="user-content">
+                                <h5 class="mb-0">Sania Mirza</h5> <span>International Tennis Player</span>
+                                <p>"I wanted to learn basics of Spanish in a month before my Barcelona trip and Esther
+                                    has been so effective and helpful at teaching me within such a short duration. My
+                                    tutoring session went exceptionally well"</p>
+                            </div>
+                            <div class="ratings"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
+            <div>
+                <div id="mainContainer" class="main container">
+                    <!-- Deep and Varun - Center Body data -->
+                    <!-- <div class="row-md-3">
+                    test
+                </div> -->
+
+                    <div class="row-md-6 gx-4 demo">
+                        <!-- Payment Plan -->
+                        <div class="justify-content-center card paymentCard shadow">
+                            <div class="text-white">
+                                <h3 class="display-5 planText">Our Plans!</h3>
+                            </div>
+                            <!-- Accordion item 1 -->
+                            <div class="accordion" id="accordionFlushExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingOne">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                            Iron Plan
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <!-- <div class="accordion-body"> -->
+                                        <div class="card extraCard">
+                                            <div class="card-body">
+                                                <p class="card-text">
+                                                    <div class="list-group">
+                                                        <label class="list-group-item">
+                                                            <input class="form-check-input me-1" type="checkbox" value="checked" checked>
+                                                            Unlimited Courses!
+                                                        </label>
+                                                        <label class="list-group-item">
+                                                            <input class="form-check-input me-1" type="checkbox" value="checked" checked>
+                                                            Pay Monthly as you go!
+                                                        </label>
+                                                    </div>
+                                                </p>
+                                                <a href="#" class="btn btn-primary">Only for $ 6.99</a>
+                                            </div>
+                                        </div>
+                                        <!-- </div> -->
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingTwo">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                            Bronze Plan
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                        <!-- <div class="accordion-body"> -->
+                                        <div class="card extraCard">
+                                            <div class="card-body">
+                                                <p class="card-text">
+                                                    <div class="list-group">
+                                                        <label class="list-group-item">
+                                                            <input class="form-check-input me-1" type="checkbox" value="checked" checked>
+                                                            Unlimited Courses!
+                                                        </label>
+                                                        <label class="list-group-item">
+                                                            <input class="form-check-input me-1" type="checkbox" value="checked" checked>
+                                                            Pay Quaterly as you go and save 10%!
+                                                        </label>
+                                                    </div>
+                                                </p>
+                                                <a href="#" class="btn btn-primary">Only for $ 10.99</a>
+                                            </div>
+                                        </div>
+                                        <!-- </div> -->
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingThree">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                            Platinum Plan
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                        <!-- <div class="accordion-body"> -->
+                                        <div class="card extraCard">
+                                            <div class="card-body">
+                                                <p class="card-text">
+                                                    <div class="list-group">
+                                                        <label class="list-group-item">
+                                                            <input class="form-check-input me-1" type="checkbox" value="checked" checked>
+                                                            Unlimited Courses!
+                                                        </label>
+                                                        <label class="list-group-item">
+                                                            <input class="form-check-input me-1" type="checkbox" value="checked" checked>
+                                                            Pay Yearly and save a staggering 30% on fees!
+                                                        </label>
+                                                    </div>
+                                                </p>
+                                                <a href="#" class="btn btn-primary">Only for $ 15.99</a>
+                                            </div>
+                                        </div>
+                                        <!-- </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End -->
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- <div class="row-md-3">test</div> -->
+
+
+            </div>
         </div>
-    </div>
 
-    <div>
-        <!-- Tirth - Footer data -->
-        test
-    </div>
+        <div>
+            <!-- Tirth - Footer data -->
+            test
+        </div>
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

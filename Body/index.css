@@ -41,3 +41,11 @@
      /* border-radius: 10px; */
      border: 1px solid rgba(255, 255, 255, 0.18);
  }
+
+ .carousel-inner>.item>img,
+ .carousel-inner>.item>a>img {
+     margin: auto;
+     width: auto;
+     height: 600px;
+     max-height: 600px;
+ }
