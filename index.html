@@ -8,11 +8,9 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> -->
+    
     <link rel="stylesheet" href="./Body/index.css">
     <link rel="stylesheet" href="./index.css">
     <link rel="stylesheet" href="./HeaderFooter/index.css">
@@ -29,58 +27,55 @@
             test
         </div>
         <div id="main_body">
-            <!-- Varuns content -->
+            <div>
+               
+                <!-- <div class="carouselContainer container main"> -->
+                <div id="ad_carousal" class="carousel slide jumbotron" data-bs-ride="carousel" >
 
-            <!-- 
-            <div id="myCarousel" class="carousel slide">
-                <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                    <li data-target="#myCarousel" data-slide-to="3"></li>
-                </ol>
+                    <!-- Indicators/dots -->
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#ad_carousal" data-bs-slide-to="0" class="active"></button>
+                        <button type="button" data-bs-target="#ad_carousal" data-bs-slide-to="1"></button>
+                        <button type="button" data-bs-target="#ad_carousal" data-bs-slide-to="2"></button>
+                        <button type="button" data-bs-target="#ad_carousal" data-bs-slide-to="3"></button>
+                    </div>
 
-                <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <img src="home_images/all.jpg" alt="all_lang" width="100" height="100">
-                        <div class="carousel-caption">
-                            <h3>Learn a new language today!</h3>
-                            <p>Choose from 1000's of well certified tutors</p>
+                    <!-- The slideshow/carousel -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="./home_images/all.jpg" alt="all" class="d-block" style="width:100%">
+                            <div class="carousel-caption">
+                                <h3>Learn a new language today!</h3>
+                                <p>Choose from 1000's of well certified tutors</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./home_images/tutor_interact.jpeg" alt="tutor_interact" class="d-block" style="width:100%">
+                            <div class="carousel-caption">
+                                <h3>Learn from an actual tutor online! Interact and learn faster today!</h3>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./home_images/spanish.jpg" alt="spanish" class="d-block" style="width:100%">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./home_images/japanese.jpg" alt="japanese" class="d-block" style="width:100%">
                         </div>
                     </div>
 
-                    <div class="item">
-                        <img src="home_images/tutor_interact.jpeg" alt="Spanish" width="100" height="100">
-                        <div class="carousel-caption">
-                            <h3>Learn from an actual tutor online! Interact and learn faster today!</h3>
-
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <img src="home_images/japanese.jpg" alt="Japanese" width="100" height="100">
-                    </div>
-
-                    <div class="item">
-                        <img src="home_images/spanish.jpg" alt="Spanish" width="100" height="100">
-                    </div>
-
+                    <!-- Left and right controls/icons -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#ad_carousal" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" style="color: black;"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#ad_carousal" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" style="color: black;"></span>
+                    </button>
                 </div>
-
-                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                    <span class="sr-only">Next</span>
-                </a>
             </div>
-                 -->
 
             <div id="testimonials" class="jumbotron">
                 <div class="row">
-                    <div class="col-md-4" style="background: rgb(131, 172, 219); ">
+                    <div class="col-md-4" style="background: rgb(179, 200, 223); ">
                         <div class="p-3 text-center px-4">
                             <div class="user-image"> <img src="home_images/testimonial1.png" class="rounded-circle" width="100" height="100"> </div>
                             <div class="user-content">
@@ -92,7 +87,7 @@
                             <div class="ratings"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
                         </div>
                     </div>
-                    <div class="col-md-4" style="background: rgb(153, 224, 171);">
+                    <div class="col-md-4 col-md-offset-2" style="background: rgb(188, 226, 197);">
                         <div class="p-3 text-center px-4">
                             <div class="user-image"> <img src="home_images/testimonial2.png" class="rounded-circle" width="100" height="100"> </div>
                             <div class="user-content">
@@ -104,7 +99,7 @@
                             <div class="ratings"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
                         </div>
                     </div>
-                    <div class="col-md-4" style="background: rgb(230, 169, 134);">
+                    <div class="col-md-4 col-md-offset-2" style="background: rgb(228, 201, 186);">
                         <div class="p-3 text-center px-4">
                             <div class="user-image"> <img src="home_images/testimonial1.png" class="rounded-circle" width="100" height="100"> </div>
                             <div class="user-content">

@@ -1,9 +1,9 @@
 body {
     margin: 0;
     min-height: 100vh;
-    background: #654ea3;
-    background: -webkit-linear-gradient(to left, #654ea3, #eaafc8);
-    background: linear-gradient(to left, #654ea3, #eaafc8);
+
+    background: -webkit-linear-gradient(to left, #999898, #d1d1d1);
+    background: linear-gradient(to left, #999999, #cacaca);
     min-height: 100vh;
     font-family: sans-serif;
     /* display: flex;
