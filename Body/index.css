@@ -7,10 +7,33 @@
      align-items: center;
  }
 
+ .customTextWhite {
+     color: white;
+ }
+
+ .ironColor {
+     color: rgb(43, 37, 37);
+     text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+
+ }
+
+ .bronzeColor {
+     color: burlywood;
+     text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+
+ }
+
+ .goldColor {
+     color: gold;
+     text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+
+ }
+
  #mainContainer {
      display: flex;
      justify-content: center;
      flex-direction: row;
+     width: auto;
      /* background-color: aqua; */
  }
 
@@ -31,7 +54,7 @@
  }
 
  .planText {
-     color: bisque;
+     color: #343a40;
      padding: 5px;
  }
 
