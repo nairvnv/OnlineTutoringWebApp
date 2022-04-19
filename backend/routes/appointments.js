@@ -2,11 +2,11 @@ var express = require("express");
 var router = express.Router();
 
 var monk = require("monk");
-var db = monk("localhost:27017/vidzy");
-var collection = db.get("appointments");
+var db = monk("localhost:27017/TutorHub");
+var collection = db.get("Appointments");
 
 
-router.get("/appointments", function (req, res) {
+router.get("/", function (req, res) {
   if (req.body.id) collection.find({_id: req.body.id}, function (err, videos) {
     if (err) throw err;
     res.json(videos);
@@ -18,7 +18,7 @@ router.get("/appointments", function (req, res) {
 });
 
 
-router.post("/appointments", function (req, res) {
+router.post("/", function (req, res) {
   collection.insert(
     {
       student_name: req.body.student_name,
@@ -35,7 +35,7 @@ router.post("/appointments", function (req, res) {
 });
 
 
-router.delete("/appointments", function (req, res) {
+router.delete("/", function (req, res) {
   collection.remove({ _id: req.body.id }, function (err, videos) {
     if (err) throw err;
     res.json(videos);
