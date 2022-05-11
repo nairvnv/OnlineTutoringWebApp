@@ -1,0 +1,8 @@
+ /* start CSS objects w the name HF_FunctionName */
+ .navbarCustomStyle {
+    position: fixed;
+    z-index: 10;
+    width: 100vw;
+    top: 0;
+    /* padding: 0; */
+ }
