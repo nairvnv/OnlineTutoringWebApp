@@ -1,7 +1,4 @@
 import React from "react";
-import one from '../dashboard_images/profile_pic.png'
-import two from '../dashboard_images/spanish_icon.jpg'
-import three from '../dashboard_images/japanese_icon.jpg'
 export default function Dashboard() {
     return (
         <>
@@ -11,7 +8,7 @@ export default function Dashboard() {
 
                 <div className="row">
                     <div className="d-flex flex-column align-items-center text-center">
-                        <img src={one} alt="Admin" className="rounded-circle p-1 bg-primary" width="110"/>
+                        <img src={'/images/profile_pic.png'} alt="Admin" className="rounded-circle p-1 bg-primary" width="110"/>
                             <div className="mt-3">
                                 <h4>Dwayne Johnson</h4>
                                 <p className="text-secondary mb-1">Actor and Wrestler</p>
@@ -26,12 +23,12 @@ export default function Dashboard() {
                             <h1>My Courses</h1>
                             <ul>
                                 <li id="courses">
-                                    <img src={two} height="200px" width="200px" />
+                                    <img src={'/images/spanish_icon.jpg'} height="200px" width="200px" />
                                     <h3>Spanish with Lisa</h3>
                                     <p>Tutor: Lisa Mathias</p>
                                 </li>
                                 <li id="courses">
-                                    <img src={three} height="200px" width="200px" />
+                                    <img src={'/images/japanese_icon.jpg'} height="200px" width="200px" />
                                     <h3>Advanced Japanese Hiragana</h3>
                                     <p>Tutor: Naruto Uzumaki</p>
                                 </li>

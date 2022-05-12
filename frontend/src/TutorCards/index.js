@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
-import image from '../images/english.jpg'
 import { Modal, Button } from 'react-bootstrap';
 function MyVerticallyCenteredModal(props) {
     console.log(props)
@@ -53,7 +52,7 @@ function TutorCards(props) {
             />
             <div class="col g-5">
                 <div class="card extraCard">
-                    <img src={image} class="card-img-top" alt="English Course by XYZ" />
+                    <img src={'/images/english.jpg'} class="card-img-top" alt="English Course by XYZ" />
                     <div class="card-body">
                         <h5 class="card-title">{courseName} <blockquote>By {name}</blockquote>
                         </h5>
