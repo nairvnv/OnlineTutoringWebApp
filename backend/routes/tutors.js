@@ -4,7 +4,8 @@ var router = express.Router();
 var monk = require("monk");
 var db = monk("localhost:27017/TutorHub");
 var collection = db.get("Tutors");
-
+var collection2 = db.get("Users");
+var collection3 = db.get("Appointments");
 
 router.get("/", function (req, res) {
   if (req.body.id) collection.find({_id: req.body.id}, function (err, request) {
@@ -62,6 +63,14 @@ router.get("/comments", function (req, res) {
   if (req.body.id) collection.find({_id: req.body.id}, function (err, request) {
     if (err) throw err;
     res.json(request[0].comments);
+  });
+});
+
+//get tutor appointments
+router.get("/appointments", function (req, res) {
+  if (req.body.id) collection3.find({_id: req.body.id}, function (err, videos) {
+    if (err) throw err;
+    res.json(videos[0]);
   });
 });
 

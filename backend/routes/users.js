@@ -7,7 +7,59 @@ var collection = db.get("Users");
 var collection2 = db.get("Tutors");
 var collection3 = db.get("Appointments");
 
+//to get a particular users details
+router.get("/", function (req, res) {
+  if (req.body.id) collection.find({_id: req.body.id}, function (err, request) {
+    if (err) throw err;
+    res.json(request);
+  });
+  else collection.find({}, function (err, request) {
+    if (err) throw err;
+    res.json(request);
+  });
+});
 
+//to add new user to db
+router.post("/", function (req, res) {
+  collection.insert(
+    {
+      name: req.body.name,
+      email: req.body.email,
+      passHash: req.body.passHash
+    },
+    function (err, request) {
+      if (err) throw err;
+      res.json(request);
+    }
+  );
+});
+
+
+//to update user details
+router.put("/", function (req, res) {
+  collection.update(
+    { _id: req.body.id },
+    {
+      $set: {
+        email: req.body.email,
+        mobile: req.body.mobile,
+        aboutMe: req.body.aboutMe,
+      },
+    },
+    function (err, request) {
+      if (err) throw err;
+      res.json(request);
+    }
+  );
+});
+
+//to delete a user
+router.delete("/", function (req, res) {
+  collection.remove({ _id: req.body.id }, function (err, request) {
+    if (err) throw err;
+    res.json(request);
+  });
+});
 
 //api routes to get, update and delete favorites
 router.get("/favorites", function (req, res) {
@@ -141,6 +193,18 @@ router.get("/favorites", function (req, res) {
       }
     );
   });
+
+
+  //get user appointments
+  router.get("/appointments", function (req, res) {
+    if (req.body.id) collection3.find({_id: req.body.id}, function (err, videos) {
+      if (err) throw err;
+      res.json(videos[0]);
+    });
+  });
+
+
+
   
 
 module.exports = router;
