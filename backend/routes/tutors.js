@@ -25,6 +25,7 @@ router.post("/", function (req, res) {
       name: req.body.name,
       email: req.body.email,
       course: req.body.course,
+      aboutMe : req.body.aboutMe,
       passHash: req.body.passHash
     },
     function (err, request) {
