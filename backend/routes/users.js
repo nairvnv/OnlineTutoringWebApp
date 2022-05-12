@@ -7,17 +7,6 @@ var collection = db.get("Users");
 var collection2 = db.get("Tutors");
 var collection3 = db.get("Appointments");
 
-//to get a particular users details
-router.get("/", function (req, res) {
-  if (req.body.id) collection.find({_id: req.body.id}, function (err, request) {
-    if (err) throw err;
-    res.json(request);
-  });
-  else collection.find({}, function (err, request) {
-    if (err) throw err;
-    res.json(request);
-  });
-});
 
 //to add new user to db
 router.post("/", function (req, res) {
@@ -60,6 +49,28 @@ router.delete("/", function (req, res) {
     res.json(request);
   });
 });
+
+//to get user details and id, when a user logins.... response is user details along with status and type
+router.get("/login", function (req, res) {
+  if (req.body.email) collection.find({email: req.body.email}, function (err, request) {
+    if (err) throw err;
+    if(request.length!=0){
+      if (request[0].passHash == req.body.passHash){
+        request[0]['status']='success'
+        request[0]['type']='user'
+        res.json(request)
+       }
+     else{
+       ress={'status':'fail'}
+       res.json(ress)
+     };
+    }else{
+      ress={'status':'fail'}
+      res.json(ress)
+    }
+  });
+});
+
 
 //api routes to get, update and delete favorites
 router.get("/favorites", function (req, res) {

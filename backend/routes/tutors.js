@@ -59,7 +59,31 @@ router.delete("/", function (req, res) {
   });
 });
 
-//needs tutor id in request
+
+//to get tutor details and id, when a tutor logins.... response is tutor details along with status and type
+router.get("/login", function (req, res) {
+  if (req.body.email) collection.find({email: req.body.email}, function (err, request) {
+    if (err) throw err;
+    console.log(request.length)
+    if(request.length!=0){
+      if (request[0].passHash == req.body.passHash){
+        request[0]['status']='success'
+        request[0]['type']='tutor'
+        res.json(request)
+       }
+     else{
+       ress={'status':'fail'}
+       res.json(ress)
+     };
+    }else{
+      ress={'status':'fail'}
+      res.json(ress)
+    }
+  });
+});
+
+
+//get all comments for particular tutor, needs tutor id in request
 router.get("/comments", function (req, res) {
   if (req.body.id) collection.find({_id: req.body.id}, function (err, request) {
     if (err) throw err;
