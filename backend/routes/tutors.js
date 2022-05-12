@@ -7,13 +7,13 @@ var collection = db.get("Tutors");
 
 
 router.get("/", function (req, res) {
-  if (req.body.id) collection.find({_id: req.body.id}, function (err, videos) {
+  if (req.body.id) collection.find({_id: req.body.id}, function (err, request) {
     if (err) throw err;
-    res.json(videos);
+    res.json(request);
   });
-  else collection.find({}, function (err, videos) {
+  else collection.find({}, function (err, request) {
     if (err) throw err;
-    res.json(videos);
+    res.json(request);
   });
 });
 
@@ -26,9 +26,9 @@ router.post("/", function (req, res) {
       course: req.body.course,
       passHash: req.body.passHash
     },
-    function (err, videos) {
+    function (err, request) {
       if (err) throw err;
-      res.json(videos);
+      res.json(request);
     }
   );
 });
@@ -43,17 +43,25 @@ router.put("/", function (req, res) {
         aboutMe: req.body.aboutMe,
       },
     },
-    function (err, videos) {
+    function (err, request) {
       if (err) throw err;
-      res.json(videos);
+      res.json(request);
     }
   );
 });
 
 router.delete("/", function (req, res) {
-  collection.remove({ _id: req.body.id }, function (err, videos) {
+  collection.remove({ _id: req.body.id }, function (err, request) {
     if (err) throw err;
-    res.json(videos);
+    res.json(request);
+  });
+});
+
+//needs tutor id in request
+router.get("/comments", function (req, res) {
+  if (req.body.id) collection.find({_id: req.body.id}, function (err, request) {
+    if (err) throw err;
+    res.json(request[0].comments);
   });
 });
 
