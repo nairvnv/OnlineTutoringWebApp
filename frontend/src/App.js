@@ -12,7 +12,7 @@ function App() {
   return (
     <Router>
       <Header />
-      <div>
+      <div style={{marginTop: 130}}>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/browse' element={<BrowseCourses />} />
