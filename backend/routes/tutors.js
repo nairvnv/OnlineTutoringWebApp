@@ -4,16 +4,17 @@ var router = express.Router();
 var monk = require("monk");
 var db = monk("localhost:27017/TutorHub");
 var collection = db.get("Tutors");
-
+var collection2 = db.get("Users");
+var collection3 = db.get("Appointments");
 
 router.get("/", function (req, res) {
-  if (req.body.id) collection.find({_id: req.body.id}, function (err, videos) {
+  if (req.body.id) collection.find({_id: req.body.id}, function (err, request) {
     if (err) throw err;
-    res.json(videos);
+    res.json(request);
   });
-  else collection.find({}, function (err, videos) {
+  else collection.find({}, function (err, request) {
     if (err) throw err;
-    res.json(videos);
+    res.json(request);
   });
 });
 
@@ -24,11 +25,12 @@ router.post("/", function (req, res) {
       name: req.body.name,
       email: req.body.email,
       course: req.body.course,
+      aboutMe : req.body.aboutMe,
       passHash: req.body.passHash
     },
-    function (err, videos) {
+    function (err, request) {
       if (err) throw err;
-      res.json(videos);
+      res.json(request);
     }
   );
 });
@@ -43,17 +45,57 @@ router.put("/", function (req, res) {
         aboutMe: req.body.aboutMe,
       },
     },
-    function (err, videos) {
+    function (err, request) {
       if (err) throw err;
-      res.json(videos);
+      res.json(request);
     }
   );
 });
 
 router.delete("/", function (req, res) {
-  collection.remove({ _id: req.body.id }, function (err, videos) {
+  collection.remove({ _id: req.body.id }, function (err, request) {
     if (err) throw err;
-    res.json(videos);
+    res.json(request);
+  });
+});
+
+
+//to get tutor details and id, when a tutor logins.... response is tutor details along with status and type
+router.get("/login", function (req, res) {
+  if (req.body.email) collection.find({email: req.body.email}, function (err, request) {
+    if (err) throw err;
+    console.log(request.length)
+    if(request.length!=0){
+      if (request[0].passHash == req.body.passHash){
+        request[0]['status']='success'
+        request[0]['type']='tutor'
+        res.json(request)
+       }
+     else{
+       ress={'status':'fail'}
+       res.json(ress)
+     };
+    }else{
+      ress={'status':'fail'}
+      res.json(ress)
+    }
+  });
+});
+
+
+//get all comments for particular tutor, needs tutor id in request
+router.get("/comments", function (req, res) {
+  if (req.body.id) collection.find({_id: req.body.id}, function (err, request) {
+    if (err) throw err;
+    res.json(request[0].comments);
+  });
+});
+
+//get tutor appointments
+router.get("/appointments", function (req, res) {
+  if (req.body.id) collection3.find({_id: req.body.id}, function (err, videos) {
+    if (err) throw err;
+    res.json(videos[0]);
   });
 });
 
