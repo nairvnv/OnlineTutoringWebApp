@@ -79,7 +79,7 @@ router.post("/login", function (req, res) {
 
 
 //api routes to get, update and delete favorites
-router.get("/favorites", function (req, res) {
+router.post("/favorites", function (req, res) {
     if (req.body.id) collection.find({_id: req.body.id}, function (err, videos) {
       if (err) throw err;
       res.json(videos[0].favorites);
