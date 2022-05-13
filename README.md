@@ -4,7 +4,7 @@ To run Backend:
 2) run "npm i" in terminal to install necessary modules
 3) run "nodemon start"
 
-To run fronend:
+To run frontend:
 
 1) cd to frontend folder in main project
 2) run "npm i" in terminal to install necessary modules
