@@ -216,8 +216,12 @@ router.get("/favorites", function (req, res) {
   });
 
   //book appointment
-  router.put("/appointments", function (req, res) {
-    if (req.body.tutor_id) collection2.find({_id: req.body.tutor_id}, async function (err, videos) {
+  router.put("/appointments", async function (req, res) {
+    
+
+
+    if (req.body.tutor_id) collection2.find({_id: req.body.tutor_id}, function (err, videos) {
+      let appointments=[]
       if (err) throw err;
 
       var main_tp=videos[0].dailyTimeSlot.split("-")
@@ -232,11 +236,15 @@ router.get("/favorites", function (req, res) {
         check_time.push(Number(str))
       });
 
-      let appointments=[]
 
       if (check_time[0]>=main_time[0] && check_time[1]<=main_time[1]){
         collection3.find({tutor_id: req.body.tutor_id,student_id : req.body.student_id}, function (err, req2) {
           for (let reqq of req2) {
+          
+            var apt_date = reqq.appointment_date
+            var my_date = req.body.date
+
+            if(my_date!==apt_date){
             var main_tmp=reqq.appointment_time.split("-");
             var main_time=[]
             main_tmp.forEach(str => {
@@ -251,15 +259,16 @@ router.get("/favorites", function (req, res) {
                 console.log(appointments)
 
             }
-
           }
-        });
+        }
         console.log('here')
         console.log(appointments)
         res.json(appointments)
-      }
 
+        });
+      }
     });
+
   });
 
 module.exports = router;
