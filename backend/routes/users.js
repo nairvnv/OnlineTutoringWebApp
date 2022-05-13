@@ -8,14 +8,19 @@ var collection2 = db.get("Tutors");
 var collection3 = db.get("Appointments");
 
 
-
 //to add new user to db
 router.post("/", function (req, res) {
   collection.insert(
     {
       name: req.body.name,
       email: req.body.email,
-      passHash: req.body.passHash
+      passHash: req.body.passHash,
+      profileImg: "",
+      mobile: "",
+      aboutMe: "",
+	    course_name: [],
+	    favorites: [],
+      totalHoursLearned: 0
     },
     function (err, request) {
       if (err) throw err;
@@ -218,8 +223,6 @@ router.get("/favorites", function (req, res) {
   //book appointment
   router.put("/appointments", async function (req, res) {
     
-
-
     if (req.body.tutor_id) collection2.find({_id: req.body.tutor_id}, function (err, videos) {
       let appointments=[]
       if (err) throw err;
