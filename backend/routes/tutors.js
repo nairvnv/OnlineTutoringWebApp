@@ -31,6 +31,7 @@ router.post("/", function (req, res) {
         aboutMe : req.body.aboutMe,
         passHash: req.body.passHash,
         dailyTimeSlot: req.body.timeslot,
+        
         profileImg: "",
         mobile: "",
         aboutMe: "",
