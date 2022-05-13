@@ -8,15 +8,8 @@ var collection2 = db.get("Users");
 var collection3 = db.get("Appointments");
 
 router.get("/", function (req, res) {
-  if (req.body.id) collection.find({_id: req.body.id}, function (err, request) {
-    if (err) throw err;
-    res.json(request);
+    res.json(collection);
   });
-  else collection.find({}, function (err, request) {
-    if (err) throw err;
-    res.json(request);
-  });
-});
 
 
 router.post("/", function (req, res) {
