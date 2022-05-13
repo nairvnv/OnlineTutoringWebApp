@@ -31,6 +31,7 @@ router.post("/", function (req, res) {
         aboutMe : req.body.aboutMe,
         passHash: req.body.passHash,
         dailyTimeSlot: req.body.timeslot,
+
         profileImg: "",
         mobile: "",
         aboutMe: "",
@@ -110,7 +111,7 @@ router.get("/comments", function (req, res) {
 });
 
 //get tutor appointments
-router.get("/appointments", function (req, res) {
+router.post("/appointments", function (req, res) {
   if (req.body.id) collection3.find({tutor_id: req.body.id}, function (err, videos) {
     if (err) throw err;
     res.json(videos);
