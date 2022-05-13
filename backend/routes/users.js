@@ -58,7 +58,7 @@ router.delete("/", function (req, res) {
 });
 
 //to get user details and id, when a user logins.... response is user details along with status and type
-router.get("/login", function (req, res) {
+router.post("/login", function (req, res) {
   if (req.body.email) collection.find({email: req.body.email}, function (err, request) {
     if (err) throw err;
     if(request.length!=0){
