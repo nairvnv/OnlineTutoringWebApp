@@ -13,3 +13,6 @@ export const UserSignupAPI = async ({ username, email, passHash }) => {
   return await callApi({ endpoint: 'user', method: 'post', body: { name: String(username), passHash: String(sha1(passHash)), email: String(email) } })
 }
 
+export const UserSignIn = async ({ email, passHash }) => {
+  return await callApi({ endpoint: 'user/login', method: 'get', body: { email: String(email), passHash: String(sha1(passHash)) } })
+}

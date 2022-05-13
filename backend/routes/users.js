@@ -10,7 +10,7 @@ var collection3 = db.get("Appointments");
 
 //to add new user to db
 router.post("/", function (req, res) {
-  
+  console.log(req.body)
   collection.insert(
     {
       name: req.body.name,

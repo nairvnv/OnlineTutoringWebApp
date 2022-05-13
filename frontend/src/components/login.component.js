@@ -4,6 +4,7 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import AuthService from "../services/auth.service";
 import sha1 from 'sha1'
+import { UserSignIn } from "../ServerApi";
 
 const required = value => {
   if (!value) {
@@ -38,13 +39,13 @@ export default class Login extends Component {
       password: e.target.value
     });
   }
-   async onClickHashPass(){
+  async onClickHashPass() {
 
     // const hashedPassword = await bcrypt.hashSync(this.state.password, bcrypt.genSaltSync());
-    var hash= sha1(this.state.password);
+    var hash = sha1(this.state.password);
     console.log(hash);
     console.log(this.state.password);
-    
+
   }
   handleLogin(e) {
     e.preventDefault();
@@ -54,35 +55,16 @@ export default class Login extends Component {
     });
     this.form.validateAll();
     if (this.checkBtn.context._errors.length === 0) {
-      AuthService.login(this.state.username, this.state.password).then(
-        () => {
-          this.props.history.push("/Dashboard");
-          window.location.reload();
-        },
-        error => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-          this.setState({
-            loading: false,
-            message: resMessage
-          });
-        }
-      );
-    } else {
-      this.setState({
-        loading: false
-      });
+      UserSignIn({ email: this.state.username, passHash: this.state.password }).then((res) => {
+        console.log(res)
+      })
     }
   }
   render() {
     return (
       <div className="col-md-12">
         <div className="card card-container">
-          
+
           <Form
             onSubmit={this.handleLogin}
             ref={c => {
@@ -115,7 +97,7 @@ export default class Login extends Component {
               <button
                 className="btn btn-primary btn-block"
                 disabled={this.state.loading}
-                onClick ={this.onClickHashPass}
+                onClick={this.onClickHashPass}
               >
                 {this.state.loading && (
                   <span className="spinner-border spinner-border-sm"></span>
