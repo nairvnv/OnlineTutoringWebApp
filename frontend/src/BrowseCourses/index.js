@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 function BrowseCourses() {
   const [searchText, setText] = useState('')
-  console.log("lasdfasdf", tutorData.Tutor)
+  // console.log("lasdfasdf", tutorData.Tutor)
   const [tutordata, setTutorData] = useState(tutorData?.Tutor || [])
 
   useEffect(() => {
@@ -36,6 +36,7 @@ function BrowseCourses() {
                 aboutMe={tutor.aboutMe}
                 courseName={tutor.course_name}
                 rating={tutor.averageRating}
+                userLoggedIn={true} //change later
               />
             </>
           )

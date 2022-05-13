@@ -1,5 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import { Button } from "react-bootstrap";
+import Time from 'react-time'
+
 export default function Dashboard() {
+    const [src, setSrc] = useState('')
+    const [favourites, setFavs] = useState(['English', 'Hindi'])
+    const appointments = [{ course_name: 'fuck', tutor_name: 'Deep', student_name: 'Ddd', appointment_date: '05/13/2022', appointment_time: '17:30' }]
+    const isTutor = false
+    const hours = 6
     return (
         <>
 
@@ -8,57 +16,53 @@ export default function Dashboard() {
 
                 <div className="row">
                     <div className="d-flex flex-column align-items-center text-center">
-                        <img src={'/images/profile_pic.png'} alt="Admin" className="rounded-circle p-1 bg-primary" width="110"/>
-                            <div className="mt-3">
-                                <h4>Dwayne Johnson</h4>
-                                <p className="text-secondary mb-1">Actor and Wrestler</p>
-                                <p className="text-muted font-size-sm">Dallas, Texas, USA</p>
-                            </div>
+                        <img src={src || '/images/profile_pic.png'} alt="Admin" className="rounded-circle p-1 bg-primary" width="110" />
+                        <input id="photo-upload" type="file" placeholder="Change Profile photo" name="asd" onChange={(e) => {
+                            e.preventDefault();
+                            const reader = new FileReader();
+                            const file = e.target.files[0];
+                            console.log(file)
+                            setSrc('/images/' + file.name)
+                            //send image name to backend
+                        }} />
+                        <div className="mt-3">
+                            <h4>Dwayne Johnson</h4>
+                            <p className="text-secondary mb-1">Actor and Wrestler</p>
+                            <p className="text-muted font-size-sm">Dallas, Texas, USA</p>
+                            <p className="text-muted font-size-sm"><strong>Total {isTutor ? 'tutoring hours - ' : 'studying hours - ' + hours}</strong></p>
+                        </div>
                     </div>
                 </div>
 
+                {favourites.length > 0 && !isTutor && <div className="row">
+                    <div className="d-flex flex-column align-items-center text-center">
+                        <div className="mt-3">
+                            <h4>Your Favorites</h4>
+                            {favourites.map((fav, idx) => <p className="text-secondary mb-1">{fav} <Button variant="danger" onClick={() => {
+                                // remove this fav
+                                var arr = favourites.filter(val => val !== fav);
+                                setFavs(prev => arr)
+                                //send api of updated favourites
+                            }}>Delete</Button></p>)}
+                        </div>
+                    </div>
+                </div>}
+
                 <div className="row form-group">
                     <div className="d-flex flex-column align-items-center text-center">
-                        <div className="col-md-6" style={{border:"1px solid black"}}>
-                            <h1>My Courses</h1>
-                            <ul>
-                                <li id="courses">
-                                    <img src={'/images/spanish_icon.jpg'} height="200px" width="200px" />
-                                    <h3>Spanish with Lisa</h3>
-                                    <p>Tutor: Lisa Mathias</p>
-                                </li>
-                                <li id="courses">
-                                    <img src={'/images/japanese_icon.jpg'} height="200px" width="200px" />
-                                    <h3>Advanced Japanese Hiragana</h3>
-                                    <p>Tutor: Naruto Uzumaki</p>
-                                </li>
-                            </ul>
+                        <div className="col-md-6" style={{ border: "1px solid black" }}>
+                            <h1>Upcoming Appointments: </h1>
+                            {appointments.length > 0 ? <ul>
+                                {appointments.map(app => (
+                                    <li id="appointment">
+                                        <h4>{app.course_name || 'Spanish'}</h4>
+                                        <p>with {!isTutor ? app.tutor_name : app.student_name || 'blah'}</p>
+                                        <p>Date and Time: {app.appointment_date + ' ' + app.appointment_time}</p>
+                                    </li>
+                                ))}
+                            </ul> : 'None'}
 
                         </div>
-
-                        <div className="col-md-6" style={{border:"1px solid black"}}>
-                            <h1>Upcoming Appointments</h1>
-                            <ul>
-                                <li id="appointment">
-                                    <h4>Advanced Japanese Hiragana</h4>
-                                    <p>Tutor: Naruto Uzumaki</p>
-                                    <p>Time and Date: 03/05/2022</p>
-                                </li>
-
-                                <li id="appointment">
-
-                                    <h4>Hindi verbal and Indian culture</h4>
-                                    <p>Tutor: Mansi Patel</p>
-                                    <p>Time and Date: 03/14/2022</p>
-                                </li>
-                            </ul>
-
-                        </div>
-
-
-
-
-
                     </div>
                 </div>
 
