@@ -55,7 +55,7 @@ class Login extends Component {
           console.log(res)
           this.props.setUser(res[0])
           this.props.setType(res[0].type)
-          this.props.history.push('/Dashboard')
+          this.props.history.push('/browse')
 
         })
       else TutorLogin({ email: this.state.username, passHash: this.state.password }).then((res) => {

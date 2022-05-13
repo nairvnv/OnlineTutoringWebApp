@@ -13,9 +13,7 @@ export default function Dashboard(props) {
 
 
 
-    // console.log('user', props.user, props.userType)
     const [favourites, setFavs] = useState([])
-    // const appointments = [{ course_name: 'fuck', tutor_name: 'Deep', student_name: 'Ddd', appointment_date: '05/13/2022', appointment_time: '17:30' }]
     const [appointments, setAppoint] = useState([])
     const isTutor = props?.userType === 'tutor'
     const hours = 6
@@ -23,10 +21,10 @@ export default function Dashboard(props) {
     useEffect(() => {
         if (user && user?.type === 'tutor')
             GetTutorAppointments({ id: user?._id }).then(setAppoint)
-        else if (user && user?.type === 'student') {
+        else if (user) {
             GetStudentAppointments({ id: user?._id }).then(setAppoint)
-            GetStudentFavourites({ id: user?._id }).then(setFavs)
-
+            GetStudentFavourites({ id: user?._id }).then((res)=>{setFavs(res);console.log('fac', res)})
+            
         }
 
     }, [])
@@ -44,14 +42,13 @@ export default function Dashboard(props) {
                             const reader = new FileReader();
                             const file = e.target.files[0];
                             console.log(file)
-                            setSrc('/images/' + file.name)
-                            //send image name to backend
+                            setSrc(file.name)
                         }} />
                         <div className="mt-3">
                             <h4>{user?.name}</h4>
                             <p className="text-secondary mb-1">{user?.aboutMe}</p>
                             {isTutor && <p className="text-muted font-size-sm">rating: {review}</p>}
-                            <p className="text-muted font-size-sm"><strong>Total {isTutor ? 'tutoring hours - ' : 'studying hours - '} {1.5 || String(user?.totalHoursTaught) || String(user?.totalHoursLearned) || 1}</strong></p>
+                            <p className="text-muted font-size-sm"><strong>Total {isTutor ? 'tutoring hours - ' : 'studying hours - '} {  1}</strong></p>
                         </div>
                     </div>
                 </div>

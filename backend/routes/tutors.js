@@ -72,7 +72,6 @@ router.delete("/", function (req, res) {
 });
 
 
-//to get tutor details and id, when a tutor logins.... response is tutor details along with status and type
 router.post("/login", function (req, res) {
   if (req.body.email) collection.find({email: req.body.email}, function (err, request) {
     if (err) throw err;

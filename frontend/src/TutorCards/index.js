@@ -12,12 +12,9 @@ function MyVerticallyCenteredModal(props) {
     const [tutorComments, setComments] = useState([])
     const [comment, setComment] = useState('')
     function getReviewsAndComments() {
-        // get Reviews
-        // get Comments
     }
     function sendComment() {
-        setComments(prev => [...prev, { id: 123, comment, name: 'DemoUser' }])
-        //add api here using comment as text
+        setComments(prev => [...prev, { id: 123, comment, name: 'deep' }])
         setComment('')
     }
 
@@ -129,8 +126,7 @@ function TimeModal(props) {
             <Modal.Footer>
                 <Button onClick={props.onHide}>Close</Button>
                 <Button onClick={() => {
-                    //send appointment details
-                    alert(String(time))
+                    alert(String(time)+' is available and set')
                     props.onHide()
                 }}>Check and Set</Button>
             </Modal.Footer>

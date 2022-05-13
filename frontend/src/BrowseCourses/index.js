@@ -7,17 +7,9 @@ import { GetAllTutors } from '../ServerApi';
 
 function BrowseCourses(props) {
   const [searchText, setText] = useState('')
-  // console.log("lasdfasdf", tutorData.Tutor)
   const [tutordata, setTutorData] = useState(tutorData.Tutor||[])
   const [user, setUser] = useState(props?.user)
 
-
-  // useEffect(() => {
-  //   GetAllTutors().then((res) => {
-  //     setTutorData(res)
-  //     console.log('courses:', res)
-  //   }).catch(console.log)
-  // }, [])
 
 
   useEffect(() => {
