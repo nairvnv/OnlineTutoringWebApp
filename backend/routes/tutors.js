@@ -8,8 +8,7 @@ var collection2 = db.get("Users");
 var collection3 = db.get("Appointments");
 
 router.get("/", function (req, res) {
-    console.log(collection)
-    res.json(collection);
+    res.json(collection.find());
   });
 
 
