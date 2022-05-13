@@ -6,6 +6,7 @@ import Rating from 'react-rating';
 import TimeKeeper from 'react-timekeeper';
 import moment from 'moment';
 import DatePicker from 'react-date-picker';
+import { AppendFavorites } from '../ServerApi';
 
 function MyVerticallyCenteredModal(props) {
     const [tutorComments, setComments] = useState([])
@@ -90,9 +91,9 @@ function TimeModal(props) {
     const [date, onChangeDate] = useState(new Date());
     let maxiDate = new Date();
     maxiDate.setDate(new Date().getDate + 7)
-    useEffect(()=>{
+    useEffect(() => {
         console.log(date)
-    },[date])
+    }, [date])
     return (
         <Modal
             {...props}
@@ -141,7 +142,7 @@ function TutorCards(props) {
     let { name = "ABC", courseName = "English", img, rating, location, aboutMe, comments = [], userLoggedIn } = props
     const [modalShow, setModalShow] = useState(false);
     const [timerModal, setTimeModal] = useState(false);
-
+    const [user, setUser] = useState(props?.user)
     console.log(img)
     return (
         <>
@@ -176,7 +177,7 @@ function TutorCards(props) {
                             <a href="#" style={{ margin: 10 }} onClick={() => { setModalShow(true) }} className="btn
                             btn-primary">Profile</a>
                             {!userLoggedIn && <a href="#" style={{ margin: 10 }} onClick={() => {
-                                //send api here
+                                AppendFavorites({ id: user._id, favorites: courseName })
                             }} className="btn
                             btn-primary">Add to Favorites</a>}
                         </div>
