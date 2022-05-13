@@ -47,3 +47,7 @@ export const AppendFavorites = async ({ id, favorites }) => {
 export const DeleteFavorite = async ({ id, favorite }) => {
   return await callApi({ endpoint: 'user/favorites', method: 'post', body: { id, favorite } })
 }
+
+export const GetAllTutors = async () => {
+  return await callApi({ endpoint: 'tutor', method: 'get' })
+}

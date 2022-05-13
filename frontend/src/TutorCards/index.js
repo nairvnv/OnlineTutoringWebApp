@@ -175,7 +175,7 @@ function TutorCards(props) {
 
                             <a href="#" style={{ margin: 10 }} onClick={() => { setModalShow(true) }} className="btn
                             btn-primary">Profile</a>
-                            {userLoggedIn && <a href="#" style={{ margin: 10 }} onClick={() => {
+                            {!userLoggedIn && <a href="#" style={{ margin: 10 }} onClick={() => {
                                 //send api here
                             }} className="btn
                             btn-primary">Add to Favorites</a>}

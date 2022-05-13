@@ -2,17 +2,29 @@ import './index.css';
 import TutorCards from '../TutorCards/index'
 import tutorData from '../tutors.json'
 import { useEffect, useState } from 'react';
+import { propTypes } from 'react-bootstrap/esm/Image';
+import { GetAllTutors } from '../ServerApi';
 
-function BrowseCourses() {
+function BrowseCourses(props) {
   const [searchText, setText] = useState('')
   // console.log("lasdfasdf", tutorData.Tutor)
-  const [tutordata, setTutorData] = useState(tutorData?.Tutor || [])
-
+  const [tutordata, setTutorData] = useState([])
+  const [user, setUser] = useState(props?.user)
   useEffect(() => {
     setTutorData(
       tutorData.Tutor.filter((tutor) => { return tutor.course_name.toLowerCase().includes(searchText.toLowerCase()) || tutor.name.toLowerCase().includes(searchText.toLowerCase()) })
     )
   }, [searchText])
+
+
+  useEffect(() => {
+    GetAllTutors().then((res) => {
+      setTutorData(res)
+      console.log('courses:', res)
+    })
+  }, [])
+
+
   return (
     <div class="container">
       <p class="lead courseHeader display-5">
@@ -36,7 +48,8 @@ function BrowseCourses() {
                 aboutMe={tutor.aboutMe}
                 courseName={tutor.course_name}
                 rating={tutor.averageRating}
-                userLoggedIn={true} //change later
+                userLoggedIn={props?.userType === 'tutor'} //change later
+                user={props?.user}
               />
             </>
           )
