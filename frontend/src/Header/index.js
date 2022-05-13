@@ -1,12 +1,12 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import './index.css'
 function Header() {
-    const navigate = useNavigate()
+    const navigate = useHistory()
     return (
         <nav className="navbar navbarCustomStyle navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid p-0">
-                <img className="navbar-brand imgBorderCut" src={'/images/tutorlogo2.png'} width="250px" onClick={()=>{ navigate('/')}}/>
+                <img className="navbar-brand imgBorderCut" src={'/images/tutorlogo2.png'} width="250px" onClick={()=>{ navigate.push('/')}}/>
                 <button className="navbar-toggler customHamburger" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -15,10 +15,10 @@ function Header() {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav customTextWhite">
                         <li className="nav-item">
-                            <NavLink className="nav-link customTextWhite" to={"/browse"}>Browse Course</NavLink>
+                            <Link className="nav-link customTextWhite" to={"/browse"}>Browse Course</Link>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link customTextWhite" to={"/dashboard"}>My DashBoard </NavLink>
+                            <Link className="nav-link customTextWhite" to={"/dashboard"}>My DashBoard </Link>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link customTextWhite" href="#">About us </a>
@@ -29,14 +29,14 @@ function Header() {
                 <div className="collapse navbar-collapse paddingRight" id="navbarNav">
                     <ul className="navbar-nav ms-auto">
                         <li className="nav-item">
-                        <NavLink to={"/login"} className="nav-link">
+                        <Link to={"/login"} className="nav-link">
                             Login
-                        </NavLink>
+                        </Link>
                         </li>
                         <li className="nav-item">
-                        <NavLink to={"/register"} className="nav-link">
+                        <Link to={"/register"} className="nav-link">
                             SignUp
-                        </NavLink>
+                        </Link>
                         </li>
                     </ul>
                 </div>

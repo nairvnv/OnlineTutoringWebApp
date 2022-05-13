@@ -2,11 +2,19 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import Time from 'react-time'
 
-export default function Dashboard() {
-    const [src, setSrc] = useState('')
+export default function Dashboard(props) {
+    const [src, setSrc] = useState(props?.user?.profileImg || '')
+    const [user, setUser] = useState(props?.user || {})
+    var review = 0
+    if (user?.totReview !== 0) {
+        review = Number(user?.sumReview) / Number(user?.totReview)
+    }
+
+
+    console.log('user', props.user, props.userType)
     const [favourites, setFavs] = useState(['English', 'Hindi'])
     const appointments = [{ course_name: 'fuck', tutor_name: 'Deep', student_name: 'Ddd', appointment_date: '05/13/2022', appointment_time: '17:30' }]
-    const isTutor = false
+    const isTutor = props.userType === 'tutor'
     const hours = 6
     return (
         <>
@@ -16,7 +24,7 @@ export default function Dashboard() {
 
                 <div className="row">
                     <div className="d-flex flex-column align-items-center text-center">
-                        <img src={src || '/images/profile_pic.png'} alt="Admin" className="rounded-circle p-1 bg-primary" width="110" />
+                        <img src={'/images/' + src || '/images/profile_pic.png'} alt="Admin" className="rounded-circle p-1 bg-primary" width="110" />
                         <input id="photo-upload" type="file" placeholder="Change Profile photo" name="asd" onChange={(e) => {
                             e.preventDefault();
                             const reader = new FileReader();
@@ -26,10 +34,10 @@ export default function Dashboard() {
                             //send image name to backend
                         }} />
                         <div className="mt-3">
-                            <h4>Dwayne Johnson</h4>
-                            <p className="text-secondary mb-1">Actor and Wrestler</p>
-                            <p className="text-muted font-size-sm">Dallas, Texas, USA</p>
-                            <p className="text-muted font-size-sm"><strong>Total {isTutor ? 'tutoring hours - ' : 'studying hours - ' + hours}</strong></p>
+                            <h4>{user.name}</h4>
+                            <p className="text-secondary mb-1">{user.aboutMe}</p>
+                            <p className="text-muted font-size-sm">rating: {review}</p>
+                            <p className="text-muted font-size-sm"><strong>Total {isTutor ? 'tutoring hours - ' : 'studying hours - '} {String(user.totalHoursTaught)}</strong></p>
                         </div>
                     </div>
                 </div>

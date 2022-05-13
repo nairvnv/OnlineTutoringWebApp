@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Header from './Header';
 import Footer from './Footer';
 import BrowseCourses from './BrowseCourses';
@@ -17,19 +17,30 @@ import BoardUser from "./components/board-user.component";
 import BoardTutor from "./components/board-tutor.component";
 
 function App() {
-
+  const [userType, setType] = useState('')
+  const [user, setUser] = useState()
   return (
     <Router>
       <Header />
-      <div style={{marginTop: 130}}>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/browse' element={<BrowseCourses />} />
-          <Route path='/dashboard' element={<Dashboard />} />
-          <Route exact path="/login" element={<Login/>} />
-          <Route exact path="/register" element={<Register/>} />
-          
-        </Routes>
+      <div style={{ marginTop: 130 }}>
+        <Switch>
+          <Route exact path='/' >
+            <Home setType={setType} setUser={setUser} user={user} userType={userType} />
+          </Route>
+          <Route exact path='/browse'>
+            <BrowseCourses setType={setType} setUser={setUser} user={user} userType={userType} />
+          </Route>
+          <Route exact path='/dashboard'>
+            <Dashboard setType={setType} setUser={setUser} user={user} userType={userType} />
+          </Route>
+          <Route exact path='/login'>
+            <Login setType={setType} setUser={setUser} user={user} userType={userType} />
+          </Route>
+          <Route exact path='/register'>
+            <Register setType={setType} setUser={setUser} user={user} userType={userType} />
+          </Route>
+
+        </Switch>
       </div>
       <Footer />
 

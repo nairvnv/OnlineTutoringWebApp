@@ -15,11 +15,18 @@ export const UserSignupAPI = async ({ username, email, passHash }) => {
 }
 
 export const TutorSignup = async ({ username, email, subject, passHash, aboutMe, startTime, endTime }) => {
-  // console.log(startTime, endTime)
-  var s = startTime.split(':')[0] + '-' + endTime.split(':')[0] 
-  return await callApi({ endpoint: 'tutor', method: 'post', body: { name: String(username), passHash: String(sha1(passHash)), email: String(email), course: subject, aboutMe, dailyTimeSlot: s} })
+  var s = startTime.split(':')[0] + '-' + endTime.split(':')[0]
+  return await callApi({ endpoint: 'tutor', method: 'post', body: { name: String(username), passHash: String(sha1(passHash)), email: String(email), course: subject, aboutMe, dailyTimeSlot: s } })
 }
 
 export const UserSignIn = async ({ email, passHash }) => {
   return await callApi({ endpoint: 'user/login', method: 'post', body: { email: String(email), passHash: String(sha1(passHash)) } })
+}
+
+export const TutorLogin = async ({ email, passHash }) => {
+  return await callApi({ endpoint: 'tutor/login', method: 'post', body: { email: String(email), passHash: String(sha1(passHash)) } })
+}
+
+export const GetTutorAppointments = async ({ tutor_id }) => {
+  return await callApi({ endpoint: 'tutor/appointments', method: 'post', body: { tutor_id } })
 }

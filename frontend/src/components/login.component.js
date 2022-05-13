@@ -4,7 +4,9 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import AuthService from "../services/auth.service";
 import sha1 from 'sha1'
-import { UserSignIn } from "../ServerApi";
+import { TutorLogin, UserSignIn } from "../ServerApi";
+import { withRouter } from "react-router";
+
 
 const required = value => {
   if (!value) {
@@ -15,18 +17,18 @@ const required = value => {
     );
   }
 };
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.handleLogin = this.handleLogin.bind(this);
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
-    this.onClickHashPass = this.onClickHashPass.bind(this);
     this.state = {
       username: "",
       password: "",
       loading: false,
-      message: ""
+      message: "",
+      tutorLogin: false
     };
   }
   onChangeUsername(e) {
@@ -39,14 +41,7 @@ export default class Login extends Component {
       password: e.target.value
     });
   }
-  async onClickHashPass() {
 
-    // const hashedPassword = await bcrypt.hashSync(this.state.password, bcrypt.genSaltSync());
-    var hash = sha1(this.state.password);
-    console.log(hash);
-    console.log(this.state.password);
-
-  }
   handleLogin(e) {
     e.preventDefault();
     this.setState({
@@ -55,8 +50,19 @@ export default class Login extends Component {
     });
     this.form.validateAll();
     if (this.checkBtn.context._errors.length === 0) {
-      UserSignIn({ email: this.state.username, passHash: this.state.password }).then((res) => {
+      if (!this.state.tutorLogin)
+        UserSignIn({ email: this.state.username, passHash: this.state.password }).then((res) => {
+          console.log(res)
+          this.props.setUser(res[0])
+          this.props.setType(res[0].type)
+          this.props.history.push('/Dashboard')
+
+        })
+      else TutorLogin({ email: this.state.username, passHash: this.state.password }).then((res) => {
         console.log(res)
+        this.props.setUser(res[0])
+        this.props.setType(res[0].type)
+        this.props.history.push('/Dashboard')
       })
     }
   }
@@ -104,6 +110,16 @@ export default class Login extends Component {
                 )}
                 <span>Login</span>
               </button>
+              <button
+                className="btn btn-primary btn-block"
+                disabled={this.state.loading}
+                onClick={() => { this.setState({ tutorLogin: true }) }}
+              >
+                {this.state.loading && (
+                  <span className="spinner-border spinner-border-sm"></span>
+                )}
+                <span>Login as tutor</span>
+              </button>
             </div>
             {this.state.message && (
               <div className="form-group">
@@ -124,3 +140,5 @@ export default class Login extends Component {
     );
   }
 }
+
+export default withRouter(Login)

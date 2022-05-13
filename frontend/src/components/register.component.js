@@ -4,6 +4,8 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 import { TutorSignup, UserSignupAPI } from "../ServerApi";
+import { withRouter } from "react-router";
+
 const required = value => {
   if (!value) {
     return (
@@ -40,7 +42,7 @@ const vpassword = value => {
     );
   }
 };
-export default class Register extends Component {
+class Register extends Component {
   constructor(props) {
     super(props);
     this.handleRegister = this.handleRegister.bind(this);
@@ -128,9 +130,12 @@ export default class Register extends Component {
     if (this.checkBtn.context._errors.length === 0) {
       if (this.state.student)
         UserSignupAPI({ username: this.state.username, email: this.state.email, passHash: this.state.password }).then((res) => {
-        console.log(res)
+          console.log(res)
+          this.props.history.push('/login')
+        })
+      else TutorSignup({ username: this.state.username, email: this.state.email, passHash: this.state.password, aboutMe: this.state.aboutMe, subject: this.state.subject, startTime: this.state.startTime, endTime: this.state.endTime }).then((res) => { console.log(res) }).then(()=>{
+        this.props.history.push('/login')
       })
-      else TutorSignup({ username: this.state.username, email: this.state.email, passHash: this.state.password, aboutMe: this.state.aboutMe, subject: this.state.subject, startTime: this.state.startTime, endTime:this.state.endTime })
     }
   }
   render() {
@@ -272,3 +277,5 @@ export default class Register extends Component {
     );
   }
 }
+
+export default withRouter(Register)
