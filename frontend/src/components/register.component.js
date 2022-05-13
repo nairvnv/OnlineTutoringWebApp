@@ -3,9 +3,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
-import AuthService from "../services/auth.service";
-import sha1 from "sha1";
-import TimePicker from 'react-time-picker';
+import { UserSignupAPI } from "../ServerApi";
 const required = value => {
   if (!value) {
     return (
@@ -49,27 +47,27 @@ export default class Register extends Component {
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
-    this.onChangeTutor=this.onChangeTutor.bind(this);
-    this.onChangeStudent =  this.onChangeStudent.bind(this);
+    this.onChangeTutor = this.onChangeTutor.bind(this);
+    this.onChangeStudent = this.onChangeStudent.bind(this);
     this.onChangeSubject = this.onChangeSubject.bind(this);
     this.onchangeAboutMe = this.onchangeAboutMe.bind(this);
     // this.onchangeWorkingHour = this.onchangeWorkingHour.bind(this);
-    this.OnclickPassHas = this.OnclickPassHas.bind(this);
+    // this.OnclickPassHas = this.OnclickPassHas.bind(this);
     this.onchangeStartTime = this.onchangeStartTime.bind(this);
-    this.onchangeEndTime =this.onchangeEndTime.bind(this);
+    this.onchangeEndTime = this.onchangeEndTime.bind(this);
     this.state = {
       username: "",
       email: "",
       password: "",
       successful: false,
       message: "",
-      student:true,
-      tutor:false,
-      subject:"",
-      aboutMe:"",
-      workingHours:"",
-      startTime:"",
-      endTime:""
+      student: true,
+      tutor: false,
+      subject: "",
+      aboutMe: "",
+      workingHours: "",
+      startTime: "",
+      endTime: ""
 
     };
   }
@@ -88,43 +86,38 @@ export default class Register extends Component {
       password: e.target.value
     });
   }
-  onChangeTutor(e){
+  onChangeTutor(e) {
     this.setState({
-        tutor:e.target.value
+      tutor: e.target.value
     });
   }
-  onChangeStudent(e){
-      this.setState({
-          student:e.target.value
-      });
-  }
-  onChangeSubject(e){
-      this.setState({
-          subject:e.target.value
-      });
-  }
-  onchangeAboutMe(e){
+  onChangeStudent(e) {
     this.setState({
-        aboutMe:e.target.value
+      student: e.target.value
     });
-}
-onchangeStartTime(e){
- this.setState({
-   startTime:e.target.value
- });
-}
-onchangeEndTime(e){
-  this.setState({
-    endTime:e.target.value
-  });
-  
-}
- async OnclickPassHas(){
-  var hash= sha1(this.state.password);
-  console.log(hash);
-  console.log(this.state.password);
-  
-}
+  }
+  onChangeSubject(e) {
+    this.setState({
+      subject: e.target.value
+    });
+  }
+  onchangeAboutMe(e) {
+    this.setState({
+      aboutMe: e.target.value
+    });
+  }
+  onchangeStartTime(e) {
+    this.setState({
+      startTime: e.target.value
+    });
+  }
+  onchangeEndTime(e) {
+    this.setState({
+      endTime: e.target.value
+    });
+
+  }
+
   handleRegister(e) {
     e.preventDefault();
     this.setState({
@@ -133,37 +126,16 @@ onchangeEndTime(e){
     });
     this.form.validateAll();
     if (this.checkBtn.context._errors.length === 0) {
-      AuthService.register(
-        this.state.username,
-        this.state.email,
-        this.state.password
-      ).then(
-        response => {
-          this.setState({
-            message: response.data.message,
-            successful: true
-          });
-        },
-        error => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-          this.setState({
-            successful: false,
-            message: resMessage
-          });
-        }
-      );
+      UserSignupAPI({ username: this.state.username, email: this.state.email, passHash: this.state.password }).then((res) => {
+        console.log(res)
+      })
     }
   }
   render() {
     return (
       <div className="col-md-12">
         <div className="card card-container">
-          
+
           <Form
             onSubmit={this.handleRegister}
             ref={c => {
@@ -180,7 +152,7 @@ onchangeEndTime(e){
                     name="username"
                     value={this.state.username}
                     onChange={this.onChangeUsername}
-                    validations={[required, vusername]}
+                  // validations={[required, vusername]}
                   />
                 </div>
                 <div className="form-group">
@@ -191,70 +163,70 @@ onchangeEndTime(e){
                     name="email"
                     value={this.state.email}
                     onChange={this.onChangeEmail}
-                    validations={[required, email]}
+                  // validations={[required, email]}
                   />
                 </div>
                 <div className="form-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" checked={this.state.student} id="flexCheckDefault" onChange={()=>{
-                            this.setState({
-                                tutor: !this.state.tutor,
-                                student: !this.state.student
-                            })
-                        }}/>
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Student
-                            </label>
-                    </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" checked={this.state.student} id="flexCheckDefault" onChange={() => {
+                      this.setState({
+                        tutor: !this.state.tutor,
+                        student: !this.state.student
+                      })
+                    }} />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Student
+                    </label>
+                  </div>
                 </div>
                 <div className="form-group">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" checked={this.state.tutor} id="flexCheckChecked" onChange={()=>{
-                        this.setState({
-                            tutor: !this.state.tutor,
-                            student: !this.state.student
-                        })
-                    }}/>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" checked={this.state.tutor} id="flexCheckChecked" onChange={() => {
+                      this.setState({
+                        tutor: !this.state.tutor,
+                        student: !this.state.student
+                      })
+                    }} />
                     <label class="form-check-label" for="flexCheckChecked">
-                     Tutor
+                      Tutor
                     </label>
-                </div>
+                  </div>
                 </div>
                 {this.state.tutor === true && (
-                <>
-                <div className="form-group">
-                  <label htmlFor="subject">Subject</label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    name="subject"
-                    value={this.state.subject}
-                    onChange={this.onChangeSubject}
-                    validations={[required]}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="aboutMe">AboutMe</label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    name="aboutMe"
-                    value={this.state.aboutMe}
-                    onChange={this.onchangeAboutMe}
-                    validations={[required]}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="startTime">Starting hour</label>
-                    <input type = "time" value={this.state.startTime} onChange={this.onchangeStartTime} className="form-control"></input>
-                </div>
-                <br></br>
-                <div className="form-group">
-                  <label htmlFor="EndTime">Ending hour</label>
-                    <input type ="time" value ={this.state.endTime} onChange = {this.onchangeEndTime}className="form-control"></input>
-                </div>
-                <br></br>
-                </>
+                  <>
+                    <div className="form-group">
+                      <label htmlFor="subject">Subject</label>
+                      <Input
+                        type="text"
+                        className="form-control"
+                        name="subject"
+                        value={this.state.subject}
+                        onChange={this.onChangeSubject}
+                        validations={[required]}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="aboutMe">AboutMe</label>
+                      <Input
+                        type="text"
+                        className="form-control"
+                        name="aboutMe"
+                        value={this.state.aboutMe}
+                        onChange={this.onchangeAboutMe}
+                        validations={[required]}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="startTime">Starting hour</label>
+                      <input type="time" value={this.state.startTime} onChange={this.onchangeStartTime} className="form-control"></input>
+                    </div>
+                    <br></br>
+                    <div className="form-group">
+                      <label htmlFor="EndTime">Ending hour</label>
+                      <input type="time" value={this.state.endTime} onChange={this.onchangeEndTime} className="form-control"></input>
+                    </div>
+                    <br></br>
+                  </>
                 )}
                 <div className="form-group">
                   <label htmlFor="password">Password</label>
@@ -286,8 +258,8 @@ onchangeEndTime(e){
                 </div>
               </div>
             )}
-            <CheckButton className = "btn btn-primary"
-              style={{ display: "none"}}
+            <CheckButton className="btn btn-primary"
+              style={{ display: "none" }}
               ref={c => {
                 this.checkBtn = c;
               }}
