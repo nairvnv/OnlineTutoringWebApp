@@ -30,8 +30,15 @@ router.post("/", function (req, res) {
         course: req.body.course,
         aboutMe : req.body.aboutMe,
         passHash: req.body.passHash,
-        dailyTimeSlot: req.body.timeslot
-
+        dailyTimeSlot: req.body.timeslot,
+        profileImg: "",
+        mobile: "",
+        aboutMe: "",
+	      course_name: "",
+        totalHoursTaught: 0,
+	      sumReview: 0,
+	      totReview: 0,
+	      comments: []
       },
       function (err, request) {
         if (err) throw err;
