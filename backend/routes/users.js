@@ -213,7 +213,7 @@ router.get("/favorites", function (req, res) {
 
 
   //get user appointments
-  router.get("/appointments", function (req, res) {
+  router.post("/appointments", function (req, res) {
     if (req.body.id) collection3.find({student_id: req.body.id}, function (err, videos) {
       if (err) throw err;
       res.json(videos);
