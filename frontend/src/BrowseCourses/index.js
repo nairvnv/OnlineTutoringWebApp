@@ -10,19 +10,21 @@ function BrowseCourses(props) {
   // console.log("lasdfasdf", tutorData.Tutor)
   const [tutordata, setTutorData] = useState([])
   const [user, setUser] = useState(props?.user)
-  useEffect(() => {
-    setTutorData(
-      tutorData.Tutor.filter((tutor) => { return tutor.course_name.toLowerCase().includes(searchText.toLowerCase()) || tutor.name.toLowerCase().includes(searchText.toLowerCase()) })
-    )
-  }, [searchText])
 
 
   useEffect(() => {
     GetAllTutors().then((res) => {
       setTutorData(res)
       console.log('courses:', res)
-    })
+    }).catch(console.log)
   }, [])
+
+
+  useEffect(() => {
+    setTutorData(
+      tutorData.Tutor.filter((tutor) => { return tutor.course_name.toLowerCase().includes(searchText.toLowerCase()) || tutor.name.toLowerCase().includes(searchText.toLowerCase()) })
+    )
+  }, [searchText])
 
 
   return (
