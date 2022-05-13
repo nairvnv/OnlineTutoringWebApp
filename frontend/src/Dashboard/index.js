@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import Time from 'react-time'
-import { GetTutorAppointments } from "../ServerApi";
+import { DeleteFavorite, GetStudentAppointments, GetStudentFavourites, GetTutorAppointments } from "../ServerApi";
 
 export default function Dashboard(props) {
     const [src, setSrc] = useState(props?.user?.profileImg || '')
@@ -14,15 +14,19 @@ export default function Dashboard(props) {
 
 
     console.log('user', props.user, props.userType)
-    const [favourites, setFavs] = useState(['English', 'Hindi'])
+    const [favourites, setFavs] = useState([])
     // const appointments = [{ course_name: 'fuck', tutor_name: 'Deep', student_name: 'Ddd', appointment_date: '05/13/2022', appointment_time: '17:30' }]
     const [appointments, setAppoint] = useState([])
     const isTutor = props.userType === 'tutor'
     const hours = 6
 
     useEffect(() => {
-        if (user)
-            GetTutorAppointments({ tutor_id: user?._id }).then(setAppoint)
+        if (user && user.type === 'tutor')
+            GetTutorAppointments({ id: user?._id }).then(setAppoint)
+        else if (user && user.type === 'student')
+            GetStudentAppointments({ id: user?._id }).then(setAppoint)
+        GetStudentFavourites({ id: user?._id }).then(setFavs)
+
     }, [])
     return (
         <>
@@ -55,10 +59,9 @@ export default function Dashboard(props) {
                         <div className="mt-3">
                             <h4>Your Favorites</h4>
                             {favourites.map((fav, idx) => <p className="text-secondary mb-1">{fav} <Button variant="danger" onClick={() => {
-                                // remove this fav
                                 var arr = favourites.filter(val => val !== fav);
                                 setFavs(prev => arr)
-                                //send api of updated favourites
+                                DeleteFavorite({ id: user?._id, favorite: fav }).then(console.log)
                             }}>Delete</Button></p>)}
                         </div>
                     </div>

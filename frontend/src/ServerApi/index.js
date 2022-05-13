@@ -27,6 +27,23 @@ export const TutorLogin = async ({ email, passHash }) => {
   return await callApi({ endpoint: 'tutor/login', method: 'post', body: { email: String(email), passHash: String(sha1(passHash)) } })
 }
 
-export const GetTutorAppointments = async ({ tutor_id }) => {
-  return await callApi({ endpoint: 'tutor/appointments', method: 'post', body: { tutor_id } })
+export const GetTutorAppointments = async ({ id }) => {
+  return await callApi({ endpoint: 'tutor/appointments', method: 'post', body: { id } })
+}
+export const GetStudentAppointments = async ({ id }) => {
+  return await callApi({ endpoint: 'user/appointments', method: 'post', body: { id } })
+}
+
+
+export const GetStudentFavourites = async ({ id }) => {
+  return await callApi({ endpoint: 'user/favorites', method: 'post', body: { id } })
+}
+
+export const AppendFavorites = async ({ id, favorites }) => {
+  return await callApi({ endpoint: 'user/favorites', method: 'post', body: { id, favorites } })
+}
+
+
+export const DeleteFavorite = async ({ id, favorite }) => {
+  return await callApi({ endpoint: 'user/favorites', method: 'post', body: { id, favorite } })
 }
