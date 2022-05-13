@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import Time from 'react-time'
+import { GetTutorAppointments } from "../ServerApi";
 
 export default function Dashboard(props) {
     const [src, setSrc] = useState(props?.user?.profileImg || '')
@@ -11,11 +12,18 @@ export default function Dashboard(props) {
     }
 
 
+
     console.log('user', props.user, props.userType)
     const [favourites, setFavs] = useState(['English', 'Hindi'])
-    const appointments = [{ course_name: 'fuck', tutor_name: 'Deep', student_name: 'Ddd', appointment_date: '05/13/2022', appointment_time: '17:30' }]
+    // const appointments = [{ course_name: 'fuck', tutor_name: 'Deep', student_name: 'Ddd', appointment_date: '05/13/2022', appointment_time: '17:30' }]
+    const [appointments, setAppoint] = useState([])
     const isTutor = props.userType === 'tutor'
     const hours = 6
+
+    useEffect(() => {
+        if (user)
+            GetTutorAppointments({ tutor_id: user?._id }).then(setAppoint)
+    }, [])
     return (
         <>
 
@@ -37,7 +45,7 @@ export default function Dashboard(props) {
                             <h4>{user.name}</h4>
                             <p className="text-secondary mb-1">{user.aboutMe}</p>
                             <p className="text-muted font-size-sm">rating: {review}</p>
-                            <p className="text-muted font-size-sm"><strong>Total {isTutor ? 'tutoring hours - ' : 'studying hours - '} {String(user.totalHoursTaught)}</strong></p>
+                            <p className="text-muted font-size-sm"><strong>Total {isTutor ? 'tutoring hours - ' : 'studying hours - '} {String(user.totalHoursTaught) || 1}</strong></p>
                         </div>
                     </div>
                 </div>
