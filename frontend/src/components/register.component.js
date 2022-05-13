@@ -3,7 +3,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
-import { UserSignupAPI } from "../ServerApi";
+import { TutorSignup, UserSignupAPI } from "../ServerApi";
 const required = value => {
   if (!value) {
     return (
@@ -126,9 +126,11 @@ export default class Register extends Component {
     });
     this.form.validateAll();
     if (this.checkBtn.context._errors.length === 0) {
-      UserSignupAPI({ username: this.state.username, email: this.state.email, passHash: this.state.password }).then((res) => {
+      if (this.state.student)
+        UserSignupAPI({ username: this.state.username, email: this.state.email, passHash: this.state.password }).then((res) => {
         console.log(res)
       })
+      else TutorSignup({ username: this.state.username, email: this.state.email, passHash: this.state.password, aboutMe: this.state.aboutMe, subject: this.state.subject, startTime: this.state.startTime, endTime:this.state.endTime })
     }
   }
   render() {
