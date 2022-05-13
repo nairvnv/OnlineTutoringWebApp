@@ -30,7 +30,6 @@ router.post("/", function (req, res) {
   );
 });
 
-
 //to update user details
 router.put("/", function (req, res) {
   collection.update(
