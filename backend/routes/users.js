@@ -8,6 +8,7 @@ var collection2 = db.get("Tutors");
 var collection3 = db.get("Appointments");
 
 
+
 //to add new user to db
 router.post("/", function (req, res) {
   collection.insert(
@@ -208,14 +209,57 @@ router.get("/favorites", function (req, res) {
 
   //get user appointments
   router.get("/appointments", function (req, res) {
-    if (req.body.id) collection3.find({_id: req.body.id}, function (err, videos) {
+    if (req.body.id) collection3.find({student_id: req.body.id}, function (err, videos) {
       if (err) throw err;
-      res.json(videos[0]);
+      res.json(videos);
     });
   });
 
+  //book appointment
+  router.put("/appointments", function (req, res) {
+    if (req.body.tutor_id) collection2.find({_id: req.body.tutor_id}, async function (err, videos) {
+      if (err) throw err;
 
+      var main_tp=videos[0].dailyTimeSlot.split("-")
+      var main_time=[]
+      main_tp.forEach(str => {
+        main_time.push(Number(str))
+      });
 
-  
+      var check_tp=req.body.timeslot.split("-")
+      var check_time=[]
+      check_tp.forEach(str => {
+        check_time.push(Number(str))
+      });
+
+      let appointments=[]
+
+      if (check_time[0]>=main_time[0] && check_time[1]<=main_time[1]){
+        collection3.find({tutor_id: req.body.tutor_id,student_id : req.body.student_id}, function (err, req2) {
+          for (let reqq of req2) {
+            var main_tmp=reqq.appointment_time.split("-");
+            var main_time=[]
+            main_tmp.forEach(str => {
+              main_time.push(Number(str))
+            });
+            console.log(check_time,main_time)
+
+            if ((check_time[0]<main_time[0] && check_time[1]<=main_time[0]) ||
+              (check_time[0]>=main_time[1] && check_time[1]>main_time[1])){
+                console.log(reqq)
+                appointments.push(reqq)
+                console.log(appointments)
+
+            }
+
+          }
+        });
+        console.log('here')
+        console.log(appointments)
+        res.json(appointments)
+      }
+
+    });
+  });
 
 module.exports = router;

@@ -20,22 +20,33 @@ router.get("/", function (req, res) {
 
 
 router.post("/", function (req, res) {
-  collection.insert(
-    {
-      name: req.body.name,
-      email: req.body.email,
-      course: req.body.course,
-      aboutMe : req.body.aboutMe,
-      passHash: req.body.passHash
-    },
-    function (err, request) {
-      if (err) throw err;
-      res.json(request);
-    }
-  );
+  if (req.body.email) collection.find({email: req.body.email}, function (err, request) {
+    if(request.length!=0){
+      res.json({'status':'fail: user already exists'});
+    }else collection.insert(
+      {
+        name: req.body.name,
+        email: req.body.email,
+        course: req.body.course,
+        aboutMe : req.body.aboutMe,
+        passHash: req.body.passHash,
+        dailyTimeSlot: req.body.timeslot
+
+      },
+      function (err, request) {
+        if (err) throw err;
+        res.json(request);
+      }
+    );
+  });
 });
 
 router.put("/", function (req, res) {
+  if (req.body.email) collection.find({email: req.body.email}, function (err, request) {
+    if(request.length!=0){
+      res.json({'status':'fail: user already exists'});
+    }
+  });
   collection.update(
     { _id: req.body.id },
     {
@@ -93,11 +104,29 @@ router.get("/comments", function (req, res) {
 
 //get tutor appointments
 router.get("/appointments", function (req, res) {
-  if (req.body.id) collection3.find({_id: req.body.id}, function (err, videos) {
+  if (req.body.id) collection3.find({tutor_id: req.body.id}, function (err, videos) {
     if (err) throw err;
-    res.json(videos[0]);
+    res.json(videos);
   });
 });
 
+
+// //give tutor id and available day/time array in format ['5-7,14-20', '', '', '17-19', '', '', '']
+// router.put("/appointments", function (req, res) {
+//   if (req.body.id) collection.find({_id: req.body.id}, function (err, request) {
+//   collection.update(
+//     { _id: req.body.id },
+//     {
+//       $set: {
+//         dailyTimeSlot: req.body.timeslot
+//       },
+//     },
+//     function (err, videos) {
+//       if (err) throw err;
+//       res.json(videos);
+//     }
+//   );
+// });
+// });
 
 module.exports = router;
